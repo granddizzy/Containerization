@@ -1,0 +1,321 @@
+Using username "roman".
+roman@192.168.1.129's password:
+Send automatic password
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-31-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Расширенное поддержание безопасности (ESM) для Applications выключено.
+
+13 обновлений может быть применено немедленно.
+Чтобы просмотреть дополнительные обновления выполните: apt list --upgradable
+
+Включите ESM Apps для получения дополнительных будущих обновлений безопасности.
+Смотрите https://ubuntu.com/esm или выполните: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Last login: Sun Sep  3 12:08:19 2023 from 192.168.1.1
+roman@UbuntuDesktop:~$ sudo apt update
+roman@UbuntuDesktop:~$ sudo apt install apt-transport-https ca-certificates curl software-properties-common
+roman@UbuntuDesktop:~$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+roman@UbuntuDesktop:~$ sudo echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+roman@UbuntuDesktop:~$ sudo apt update
+roman@UbuntuDesktop:~$ sudo apt install dock
+docker                     docker-buildx-plugin       docker-ce-rootless-extras  docker-compose-plugin      docker.io                  docknot
+docker2aci                 docker-ce                  docker-clean               docker-compose-v2          docker-registry
+docker-buildx              docker-ce-cli              docker-compose             docker-doc                 docker-scan-plugin
+roman@UbuntuDesktop:~$ sudo apt install docker-ce
+roman@UbuntuDesktop:~$ sudo usermod -aG docker $USER
+roman@UbuntuDesktop:~$ newgrp docker
+roman@UbuntuDesktop:~$ docker --version
+Docker version 24.0.6, build ed223bc
+roman@UbuntuDesktop:~$ docker run docker/whalesay cowsay Hello, Docker!
+Unable to find image 'docker/whalesay:latest' locally
+latest: Pulling from docker/whalesay
+[DEPRECATION NOTICE] Docker Image Format v1, and Docker Image manifest version 2, schema 1 support will be removed in an upcoming release. Suggest the author of docker.io/docker/whalesay:latest to upgrade the image to the OCI Format, or Docker Image manifest v2, schema 2. More information at https://docs.docker.com/go/deprecated-image-specs/
+e190868d63f8: Pull complete
+909cd34c6fd7: Pull complete
+0b9bfabab7c1: Pull complete
+a3ed95caeb02: Pull complete
+00bf65475aba: Pull complete
+c57b6bcc83e3: Pull complete
+8978f6879e2f: Pull complete
+8eed3712d2cf: Pull complete
+Digest: sha256:178598e51a26abbc958b8a2e48825c90bc22e641de3d31e18aaf55f3258ba93b
+Status: Downloaded newer image for docker/whalesay:latest
+ ________________
+< Hello, Docker! >
+ ----------------
+    \
+     \
+      \
+                    ##        .
+              ## ## ##       ==
+           ## ## ## ##      ===
+       /""""""""""""""""___/ ===
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+       \______ o          __/
+        \    \        __/
+          \____\______/
+roman@UbuntuDesktop:~$ docker run docker/whalesay cowsay -f elephant "Hello, Docker!"
+ ________________
+< Hello, Docker! >
+ ----------------
+ \     /\  ___  /\
+  \   // \/   \/ \\
+     ((    O O    ))
+      \\ /     \ //
+       \/  | |  \/
+        |  | |  |
+        |  | |  |
+        |   o   |
+        | |   | |
+        |m|   |m|
+roman@UbuntuDesktop:~$ docker run docker/whalesay cowsay -f tux "Hello, Docker!"
+ ________________
+< Hello, Docker! >
+ ----------------
+   \
+    \
+        .--.
+       |o_o |
+       |:_/ |
+      //   \ \
+     (|     | )
+    /'\_   _/`\
+    \___)=(___/
+
+roman@UbuntuDesktop:~$ docker run docker/whalesay cowsay -f dragon "Hello, Docker!"
+ ________________
+< Hello, Docker! >
+ ----------------
+      \                    / \  //\
+       \    |\___/|      /   \//  \\
+            /0  0  \__  /    //  | \ \
+           /     /  \/_/    //   |  \  \
+           @_^_@'/   \/_   //    |   \   \
+           //_^_/     \/_ //     |    \    \
+        ( //) |        \///      |     \     \
+      ( / /) _|_ /   )  //       |      \     _\
+    ( // /) '/,_ _ _/  ( ; -.    |    _ _\.-~        .-~~~^-.
+  (( / / )) ,-{        _      `-.|.-~-.           .~         `.
+ (( // / ))  '/\      /                 ~-. _ .-~      .-~^-.  \
+ (( /// ))      `.   {            }                   /      \  \
+  (( / ))     .----~-.\        \-'                 .~         \  `. \^-.
+             ///.----..>        \             _ -~             `.  ^-`  ^-_
+               ///-._ _ _ _ _ _ _}^ - - - - ~                     ~-- ,.-~
+                                                                  /.-~
+roman@UbuntuDesktop:~$ docker run docker/whalesay cowsay -f kitty "Hello, Docker!"
+ ________________
+< Hello, Docker! >
+ ----------------
+     \
+      \
+       ("`-'  '-/") .___..--' ' "`-._
+         ` *_ *  )    `-.   (      ) .`-.__. `)
+         (_Y_.) ' ._   )   `._` ;  `` -. .-'
+      _.. `--'_..-_/   /--' _ .' ,4
+   ( i l ),-''  ( l i),'  ( ( ! .-'
+roman@UbuntuDesktop:~$ docker images
+REPOSITORY        TAG       IMAGE ID       CREATED       SIZE
+docker/whalesay   latest    6b362a9f73eb   8 years ago   247MB
+roman@UbuntuDesktop:~$ docker rmi 6b362a9f73eb
+Error response from daemon: conflict: unable to delete 6b362a9f73eb (must be forced) - image is being used by stopped container 5ba236f042c3
+roman@UbuntuDesktop:~$ docker ps -a
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS                      PORTS     NAMES
+13f30dfc065b   docker/whalesay   "cowsay -f kitty 'He…"   4 minutes ago    Exited (0) 4 minutes ago              condescending_swirles
+ac9ef2b358e5   docker/whalesay   "cowsay -f owl 'Hell…"   4 minutes ago    Exited (2) 4 minutes ago              quirky_kilby
+e5bebb84f128   docker/whalesay   "cowsay -f panda 'He…"   5 minutes ago    Exited (2) 5 minutes ago              pedantic_hermann
+ffe4dde79458   docker/whalesay   "cowsay -f duck 'Hel…"   5 minutes ago    Exited (2) 5 minutes ago              vibrant_visvesvaraya
+2737bf13ae40   docker/whalesay   "cowsay -f kangaro '…"   6 minutes ago    Exited (2) 6 minutes ago              sharp_saha
+f63259cb3c58   docker/whalesay   "cowsay -f kangaroo …"   6 minutes ago    Exited (2) 6 minutes ago              keen_stonebraker
+5ba236f042c3   docker/whalesay   "cowsay -f dragon 'H…"   6 minutes ago    Exited (0) 6 minutes ago              agitated_maxwell
+ca6506de85f2   docker/whalesay   "cowsay -f tux 'Hell…"   7 minutes ago    Exited (0) 7 minutes ago              hopeful_bartik
+d7e80d037929   docker/whalesay   "cowsay -f elephant …"   7 minutes ago    Exited (0) 7 minutes ago              focused_burnell
+2e0574870229   docker/whalesay   "cowsay Hello, Docke…"   35 minutes ago   Exited (0) 35 minutes ago             reverent_buck
+roman@UbuntuDesktop:~$ docker rm 13f30dfc065b ac9ef2b358e5 e5bebb84f128 ffe4dde79458 2737bf13ae40 f63259cb3c58 5ba236f042c3 ca6506de85f2 d7e80d037929 2e0574870229
+13f30dfc065b
+ac9ef2b358e5
+e5bebb84f128
+ffe4dde79458
+2737bf13ae40
+f63259cb3c58
+5ba236f042c3
+ca6506de85f2
+d7e80d037929
+2e0574870229
+roman@UbuntuDesktop:~$ docker rmi 6b362a9f73eb
+Untagged: docker/whalesay:latest
+Untagged: docker/whalesay@sha256:178598e51a26abbc958b8a2e48825c90bc22e641de3d31e18aaf55f3258ba93b
+Deleted: sha256:6b362a9f73eb8c33b48c95f4fcce1b6637fc25646728cf7fb0679b2da273c3f4
+Deleted: sha256:34dd66b3cb4467517d0c5c7dbe320b84539fbb58bc21702d2f749a5c932b3a38
+Deleted: sha256:52f57e48814ed1bb08a651ef7f91f191db3680212a96b7f318bff0904fed2e65
+Deleted: sha256:72915b616c0db6345e52a2c536de38e29208d945889eecef01d0fef0ed207ce8
+Deleted: sha256:4ee0c1e90444c9b56880381aff6455f149c92c9a29c3774919632ded4f728d6b
+Deleted: sha256:86ac1c0970bf5ea1bf482edb0ba83dbc88fefb1ac431d3020f134691d749d9a6
+Deleted: sha256:5c4ac45a28f91f851b66af332a452cba25bd74a811f7e3884ed8723570ad6bc8
+Deleted: sha256:088f9eb16f16713e449903f7edb4016084de8234d73a45b1882cf29b1f753a5a
+Deleted: sha256:799115b9fdd1511e8af8a8a3c8b450d81aa842bbf3c9f88e9126d264b232c598
+Deleted: sha256:3549adbf614379d5c33ef0c5c6486a0d3f577ba3341f573be91b4ba1d8c60ce4
+Deleted: sha256:1154ba695078d29ea6c4e1adb55c463959cd77509adf09710e2315827d66271a
+roman@UbuntuDesktop:~$ docker run docker/whalesay cowsay -f dragon "Hello, Docker!"
+Unable to find image 'docker/whalesay:latest' locally
+latest: Pulling from docker/whalesay
+[DEPRECATION NOTICE] Docker Image Format v1, and Docker Image manifest version 2, schema 1 support will be removed in an upcoming release. Suggest the author of docker.io/docker/whalesay:latest to upgrade the image to the OCI Format, or Docker Image manifest v2, schema 2. More information at https://docs.docker.com/go/deprecated-image-specs/
+e190868d63f8: Pull complete
+909cd34c6fd7: Pull complete
+0b9bfabab7c1: Pull complete
+a3ed95caeb02: Pull complete
+00bf65475aba: Pull complete
+c57b6bcc83e3: Pull complete
+8978f6879e2f: Pull complete
+8eed3712d2cf: Pull complete
+Digest: sha256:178598e51a26abbc958b8a2e48825c90bc22e641de3d31e18aaf55f3258ba93b
+Status: Downloaded newer image for docker/whalesay:latest
+ ________________
+< Hello, Docker! >
+ ----------------
+      \                    / \  //\
+       \    |\___/|      /   \//  \\
+            /0  0  \__  /    //  | \ \
+           /     /  \/_/    //   |  \  \
+           @_^_@'/   \/_   //    |   \   \
+           //_^_/     \/_ //     |    \    \
+        ( //) |        \///      |     \     \
+      ( / /) _|_ /   )  //       |      \     _\
+    ( // /) '/,_ _ _/  ( ; -.    |    _ _\.-~        .-~~~^-.
+  (( / / )) ,-{        _      `-.|.-~-.           .~         `.
+ (( // / ))  '/\      /                 ~-. _ .-~      .-~^-.  \
+ (( /// ))      `.   {            }                   /      \  \
+  (( / ))     .----~-.\        \-'                 .~         \  `. \^-.
+             ///.----..>        \             _ -~             `.  ^-`  ^-_
+               ///-._ _ _ _ _ _ _}^ - - - - ~                     ~-- ,.-~
+                                                                  /.-~
+roman@UbuntuDesktop:~$ docker ps -a
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS                     PORTS     NAMES
+cb34c183d2d5   docker/whalesay   "cowsay -f dragon 'H…"   14 seconds ago   Exited (0) 8 seconds ago             objective_bardeen
+roman@UbuntuDesktop:~$ docker rm $(docker ps -aq)
+cb34c183d2d5
+
+
+roman@UbuntuDesktop:~$ docker run -it -h GB --name gb-test ubuntu:22.10
+Unable to find image 'ubuntu:22.10' locally
+22.10: Pulling from library/ubuntu
+3ad6ea492c35: Pull complete
+Digest: sha256:e322f4808315c387868a9135beeb11435b5b83130a8599fd7d0014452c34f489
+Status: Downloaded newer image for ubuntu:22.10
+root@GB:/# ls -l
+total 48
+lrwxrwxrwx   1 root root    7 Jun 24 02:02 bin -> usr/bin
+drwxr-xr-x   2 root root 4096 Oct 17  2022 boot
+drwxr-xr-x   5 root root  360 Oct 12 18:50 dev
+drwxr-xr-x   1 root root 4096 Oct 12 18:50 etc
+drwxr-xr-x   2 root root 4096 Oct 17  2022 home
+lrwxrwxrwx   1 root root    7 Jun 24 02:02 lib -> usr/lib
+lrwxrwxrwx   1 root root    9 Jun 24 02:02 lib32 -> usr/lib32
+lrwxrwxrwx   1 root root    9 Jun 24 02:02 lib64 -> usr/lib64
+lrwxrwxrwx   1 root root   10 Jun 24 02:02 libx32 -> usr/libx32
+drwxr-xr-x   2 root root 4096 Jun 24 02:02 media
+drwxr-xr-x   2 root root 4096 Jun 24 02:02 mnt
+drwxr-xr-x   2 root root 4096 Jun 24 02:02 opt
+dr-xr-xr-x 249 root root    0 Oct 12 18:50 proc
+drwx------   2 root root 4096 Jun 24 02:05 root
+drwxr-xr-x   5 root root 4096 Jun 24 02:05 run
+lrwxrwxrwx   1 root root    8 Jun 24 02:02 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 Jun 24 02:02 srv
+dr-xr-xr-x  13 root root    0 Oct 12 18:50 sys
+drwxrwxrwt   2 root root 4096 Jun 24 02:05 tmp
+drwxr-xr-x  14 root root 4096 Jun 24 02:02 usr
+drwxr-xr-x  11 root root 4096 Jun 24 02:05 var
+root@GB:/# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   4508  3584 pts/0    Ss   18:50   0:00 /bin/bash
+root          10  0.0  0.0   6864  2944 pts/0    R+   18:51   0:00 ps aux
+root@GB:/# mkdir /example
+root@GB:/# cd /example/
+root@GB:/example# touch password.txt
+root@GB:/example# echo "123test" >> password.txt
+root@GB:/example# cat password.txt
+123test
+root@GB:/example# ip a
+bash: ip: command not found
+root@GB:/example# exit
+exit
+roman@UbuntuDesktop:~$ docker ps -a
+CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS                       PORTS     NAMES
+198b58d89865   ubuntu:22.10   "/bin/bash"   3 minutes ago   Exited (127) 4 seconds ago             gb-test
+roman@UbuntuDesktop:~$ docker stop gb-test
+gb-test
+roman@UbuntuDesktop:~$ docker start gb-test
+gb-test
+roman@UbuntuDesktop:~$ docker exec gb-test
+"docker exec" requires at least 2 arguments.
+See 'docker exec --help'.
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+Execute a command in a running container
+roman@UbuntuDesktop:~$ docker exec -it gb-test bash
+root@GB:/# exit
+exit
+roman@UbuntuDesktop:~/test$ docker run -it --name gb-test-2 -v /home/roman/test/folder:/otherway ubuntu:22.10
+root@0c8a7762a28f:/# ls /
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  otherway  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@0c8a7762a28f:/# ls /otherway/
+root@0c8a7762a28f:/# cd /otherway/
+root@0c8a7762a28f:/otherway# touch password.txt
+root@0c8a7762a28f:/otherway# echo "123test" >> password.txt
+root@0c8a7762a28f:/otherway# cat password.txt
+123test
+root@0c8a7762a28f:/otherway# exit
+exit
+roman@UbuntuDesktop:~/test$ ls folder/
+password.txt
+roman@UbuntuDesktop:~/test$ cat folder/password.txt
+123test
+roman@UbuntuDesktop:~/test$
+
+roman@UbuntuDesktop:~/test$ mkdir ~/docker-mount-example
+roman@UbuntuDesktop:~/test$ echo "This is the host test.txt file" > ~/docker-mount-example/test.txt
+roman@UbuntuDesktop:~/test$ echo "This is the root test.txt file" > ~/test.txt
+roman@UbuntuDesktop:~/test$ docker run -it --name gb-test-3 ubuntu:22.10
+root@e8bec2b1c3b7:/# exit
+exit
+roman@UbuntuDesktop:~/test$ docker ps -a
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS                      PORTS     NAMES
+e8bec2b1c3b7   ubuntu:22.10   "/bin/bash"   4 minutes ago    Exited (0) 3 minutes ago              gb-test-3
+0c8a7762a28f   ubuntu:22.10   "/bin/bash"   16 minutes ago   Exited (0) 12 minutes ago             gb-test-2
+198b58d89865   ubuntu:22.10   "/bin/bash"   34 minutes ago   Up 29 minutes                         gb-test
+roman@UbuntuDesktop:~/test$ docker rm e8bec2b1c3b7 0c8a7762a28f
+e8bec2b1c3b7
+0c8a7762a28f
+roman@UbuntuDesktop:~/test$ docker stop 198b58d89865
+198b58d89865
+roman@UbuntuDesktop:~/test$ docker rm 198b58d89865
+198b58d89865
+roman@UbuntuDesktop:~/test$ docker run -it --name gb-test -v ~/docker-mount-example:/container-mount -v ~/test.txt:/container-mount/test.txt ubuntu:22.10
+root@d08ffc25b1ee:/# cat /
+.dockerenv       container-mount/ home/            lib64/           mnt/             root/            srv/             usr/
+bin/             dev/             lib/             libx32/          opt/             run/             sys/             var/
+boot/            etc/             lib32/           media/           proc/            sbin/            tmp/
+root@d08ffc25b1ee:/# cat /container-mount/test.txt
+This is the root test.txt file
+root@d08ffc25b1ee:/# exit
+exit
+roman@UbuntuDesktop:~/test$ cd ..
+roman@UbuntuDesktop:~$ cat test.txt
+This is the root test.txt file
+roman@UbuntuDesktop:~$ cat ./docker-mount-example/test.txt
+This is the host test.txt file
+roman@UbuntuDesktop:~$
+
+
+
+
+
+
+

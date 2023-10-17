@@ -1,0 +1,115 @@
+Using username "roman".
+roman@192.168.1.129's password:
+Send automatic password
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-34-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Расширенное поддержание безопасности (ESM) для Applications выключено.
+
+0 обновлений может быть применено немедленно.
+
+Включите ESM Apps для получения дополнительных будущих обновлений безопасности.
+Смотрите https://ubuntu.com/esm или выполните: sudo pro status
+
+Last login: Sun Oct 15 23:11:03 2023 from 192.168.1.1
+roman@UbuntuDesktop:~$ cd NotesLite/
+roman@UbuntuDesktop:~/NotesLite$ curl http://lepihov.by/NotesLite.tar.gz -o ./NotesLite.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2974  100  2974    0     0   146k      0 --:--:-- --:--:-- --:--:--  145k
+roman@UbuntuDesktop:~/NotesLite$ nano Dockerfile
+roman@UbuntuDesktop:~/NotesLite$ cat Dockerfile
+FROM ubuntu:latest
+MAINTAINER Lepihov_Roman
+RUN apt update && apt install python3 -y
+ADD NotesLite.tar.gz /
+WORKDIR /NotesLite
+CMD ["python3", "/NotesLite/main.py"]
+roman@UbuntuDesktop:~/NotesLite$ docker build -t noteslite .
+[+] Building 11.4s (9/9) FINISHED                                                                                                                                     docker:default
+ => [internal] load build definition from Dockerfile                                                                                                                            0.5s
+ => => transferring dockerfile: 204B                                                                                                                                            0.0s
+ => [internal] load .dockerignore                                                                                                                                               0.7s
+ => => transferring context: 2B                                                                                                                                                 0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                                1.6s
+ => [1/4] FROM docker.io/library/ubuntu:latest@sha256:2b7412e6465c3c7fc5bb21d3e6f1917c167358449fecac8176c6e496e5c1f05f                                                          0.0s
+ => [internal] load build context                                                                                                                                               0.4s
+ => => transferring context: 38B                                                                                                                                                0.0s
+ => CACHED [2/4] RUN apt update && apt install python3 -y                                                                                                                       0.0s
+ => [3/4] ADD NotesLite.tar.gz /                                                                                                                                                1.4s
+ => [4/4] WORKDIR /NotesLite                                                                                                                                                    1.8s
+ => exporting to image                                                                                                                                                          2.7s
+ => => exporting layers                                                                                                                                                         2.3s
+ => => writing image sha256:7c6c3b1367b7e4b2f4c2a73820f3329bcaf1a3bdeb98816a8a78470c6e73ab80                                                                                    0.1s
+ => => naming to docker.io/library/noteslite2                                                                                                                                   0.3s
+
+roman@UbuntuDesktop:~/NotesLite$ docker run -it noteslite
+Главное меню (ввод - завершение программы):
+    1. Посмотреть список заметок (за дату)
+    2. Открыть заметку
+    3. Найти заметку
+    4. Добавить заметку
+    5. Изменить заметку
+    6. Удалить заметку
+
+Выберите пункт меню: 4
+Введите заголовок заметки: Первая
+Введите текст заметки: Hello world
+
+========================================================================
+1   | Первая               | 2023-10-15 20:15:12
+========================================================================
+
+Главное меню (ввод - завершение программы):
+    1. Посмотреть список заметок (за дату)
+    2. Открыть заметку
+    3. Найти заметку
+    4. Добавить заметку
+    5. Изменить заметку
+    6. Удалить заметку
+
+Выберите пункт меню: 2
+
+========================================================================
+1   | Первая               | 2023-10-15 20:15:12
+========================================================================
+
+Выберите заметку: 1
+
+===================================================================================
+Идентификатор:  1
+Дата изменения: 2023-10-15 20:15:12
+Заголовок:      Первая
+Содержание:     ПриHello world
+===================================================================================
+
+Главное меню (ввод - завершение программы):
+    1. Посмотреть список заметок (за дату)
+    2. Открыть заметку
+    3. Найти заметку
+    4. Добавить заметку
+    5. Изменить заметку
+    6. Удалить заметку
+
+Выберите пункт меню:
+
+roman@UbuntuDesktop:~/NotesLite$ docker run -it noteslite bash
+root@3dad549b0d71:/NotesLite# ls
+classes.py  controller.py  main.py  model.py  text_fields.py  view.py
+root@3dad549b0d71:/NotesLite# exit
+exit
+roman@UbuntuDesktop:~/NotesLite$
+roman@UbuntuDesktop:~/NotesLite$ docker images
+REPOSITORY              TAG       IMAGE ID       CREATED          SIZE
+noteslite              latest    7c6c3b1367b7   35 seconds ago   153MB
+roman@UbuntuDesktop:~/NotesLite$ docker ps -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS                          PORTS                                       NAMES
+3dad549b0d71   noteslite               "bash"                   59 seconds ago   Exited (0) 48 seconds ago                                                   tender_moser
+cfec0d858964   noteslite               "python3 /NotesLite/…"   2 minutes ago    Exited (0) About a minute ago                                               nervous_wiles
+roman@UbuntuDesktop:~/NotesLite$
+
+
+
